@@ -1,4 +1,5 @@
 using AutoMapper;
+using Movie.Models;
 using MovieRental.Table;
 
 
@@ -16,8 +17,12 @@ namespace MovieRental
 
 
             CreateMap<Movies, MoviesDTO>(); // ?
-                
-                
+            CreateMap<Customers, CustomersDTO>();
+
+            CreateMap<CreateFacilitiesDTO, Facilities>()
+                .ForMember(r => r.Adress,
+                c => c.MapFrom(dto => new Adress()
+                { City = dto.City, PostaCode = dto.PostaCode, Street = dto.Street }));
         }
     }
 }

@@ -15,7 +15,7 @@ namespace MovieRental
         public string City { get; set; }
         public string Street { get; set; }
         public string PostaCode { get; set; }
-       // public List<MoviesDTO> Movies { get; set; }
+       public List<MoviesDTO> Movies { get; set; }
 
 
 

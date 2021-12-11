@@ -1,8 +1,9 @@
 using System.Runtime.InteropServices;
 using MovieRental.Table;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.ActionConstraints;
 
-namespace MovieRental
+namespace MovieRental.Table
 {
     public class CustomersDTO
     {
