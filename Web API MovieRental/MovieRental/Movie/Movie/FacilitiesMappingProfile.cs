@@ -18,6 +18,7 @@ namespace MovieRental
 
             CreateMap<Movies, MoviesDTO>(); // ?
             CreateMap<Customers, CustomersDTO>();
+                
 
             CreateMap<CreateFacilitiesDTO, Facilities>()
                 .ForMember(r => r.Adress,

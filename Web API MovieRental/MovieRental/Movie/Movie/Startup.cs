@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Movie.Services;
 using MovieRental;
 using MovieRental.Table;
 using System;
@@ -36,6 +37,7 @@ namespace Movie
             services.AddDbContext<MovieRentalDbContext>(); //kontekst baz danych
             services.AddScoped<MovieRentalSeeder>();
             services.AddAutoMapper(this.GetType().Assembly);
+            services.AddScoped<IFacilitiesService, FacilitiesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

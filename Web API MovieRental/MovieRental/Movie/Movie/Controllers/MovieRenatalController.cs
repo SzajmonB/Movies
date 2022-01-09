@@ -9,6 +9,7 @@ using MovieRental.Table;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Movie.Models;
+using Movie.Services;
 
 namespace MovieRental.Controllers
 {
@@ -18,72 +19,83 @@ namespace MovieRental.Controllers
 
     {
 
-        private readonly MovieRentalDbContext _dbContext;
-        private IMapper _mapper;
 
-        public MovieRentalController(MovieRentalDbContext dbContext, IMapper mapper)
+
+        private readonly IFacilitiesService _facilitiesService;
+
+
+        public MovieRentalController(IFacilitiesService facilitiesService)
         {
-            _dbContext = dbContext;
-            _mapper = mapper;
+            _facilitiesService = facilitiesService;
         }
 
-        [HttpGet("AllFacilities")]
+        [HttpGet("AllCustomers")]
         public ActionResult<IEnumerable<FacilitiesDTO>> GetAll()
         {
-            var facilities = _dbContext
-                .Facilities
-                .ToList();
+            var facilitiesDTO = _facilitiesService.GetAll();
 
-            return Ok(facilities);
+            return Ok(facilitiesDTO);
         }
         [HttpPost]
         //      akcja         nazwa       paramter pobierany   model na podstawie ktorego twozymy restauracje 
         public ActionResult CreateFacilities([FromBody] CreateFacilitiesDTO dto)
         {
-            var facilities = _mapper.Map<Facilities>(dto);
-            _dbContext.Facilities.Add(facilities);
-            _dbContext.SaveChanges();
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            return Created($"/API/MovieRental/{facilities.Id}", null);
+            var id = _facilitiesService.Create(dto);
+
+            return Created($"/API/MovieRental/{id}", null);
         }
         [HttpGet("Facilities/{id}")]
         public ActionResult<FacilitiesDTO> GetId([FromRoute] int id)
         {
-            var facilities = _dbContext
-                 .Facilities
-                 .Include(r => r.Adress)
-                 .Include(t => t.Movies)
-                 .FirstOrDefault(r => r.Id == id);
+            var facilitiesDTO = _facilitiesService.GetById(id);
 
-            if (facilities is null) return null;
 
-            var result = _mapper.Map<FacilitiesDTO>(facilities);
-            return result;
-        } 
+
+            if (facilitiesDTO is null)
+            {
+                return NotFound();
+            }
+
+
+            return facilitiesDTO;
+        }
 
         [HttpGet("Customer")]
 
         public ActionResult<Customers> GetCustomers()
         {
 
-         var customer = _dbContext
-         .Customers
-          .ToList();
-        var customersDTOs = _mapper.Map<List<CustomersDTO>>(customer);
-            return  Ok(customersDTOs);
+            var customerDTO = _facilitiesService.GetAll();
+
+            return Ok(customerDTO);
         }
 
 
-[HttpGet("version")]
-public string Version()
-{
-    return "Version 1.0.0";
-}
+        [HttpGet("version")]
+        public string Version()
+        {
+            return "Version 1.0.0";
+        }
+        [HttpDelete("Delete/{id}")]
+        public ActionResult Delete([FromRoute] int id)
+        {
+            var isDeleted = _facilitiesService.Delete(id);
 
-}
+            if (isDeleted)
+            {
+                return NoContent();
+
+            }
+
+            return NotFound();
+        }
+
+    }
 }
 

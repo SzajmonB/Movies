@@ -1,10 +1,5 @@
-using System;
-using System.Text;
-using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using Microsoft.AspNetCore.Mvc;
 using MovieRental.Table;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +8,14 @@ using MovieRental;
 
 namespace Movie.Services
 {
-    public class FacilitiesService
+    /* public interface IFacilitiesService
+     {
+         FacilitiesDTO GetById(int id);
+         IEnumerable<CustomersDTO> GetAll();
+         void Create(CreateFacilitiesDTO dto);
+
+     }*/
+    public class FacilitiesService : IFacilitiesService
 
     {
         private MovieRentalDbContext _dbContext;
@@ -28,34 +30,49 @@ namespace Movie.Services
         {
             var facilities = _dbContext
                .Facilities
-               .Include(r=> r.Adress)
-               .Include(t=>t.Movies)
+               .Include(r => r.Adress)
+               .Include(t => t.Movies)
                .FirstOrDefault(r => r.Id == id);
 
             if (facilities is null) return null;
-      
+
             var result = _mapper.Map<FacilitiesDTO>(facilities);
             return result;
         }
-        public IEnumerable<CustomersDTO> GetAll()
+        public IEnumerable<FacilitiesDTO> GetAll()
         {
-            {
-                var facilities = _dbContext
-                    .Facilities
-                  .Include(r => r.Adress)
-                  .Include(r => r.Movies)
-                    .ToList();
+            var facilities = _dbContext
+              .Facilities
+              .Include(r => r.Adress)
+              .Include(t => t.Movies)
+               .ToList();
 
 
-                var facilitiesDTO = _mapper.Map<List<FacilitiesDTO>>(facilities);
-                return (IEnumerable<CustomersDTO>)facilitiesDTO;
-            }
+            var facilitiesDTO = _mapper.Map<List<FacilitiesDTO>>(facilities);
+            return facilitiesDTO;
         }
-            public void Create(CreateFacilitiesDTO dto)
+
+        public int Create(CreateFacilitiesDTO dto)
         {
             var facilities = _mapper.Map<Facilities>(dto);
             _dbContext.Facilities.Add(facilities);
             _dbContext.SaveChanges();
+
+            return facilities.Id;
+        }
+        public bool Delete (int id)
+        {
+            var facilities = _dbContext
+               .Facilities
+              
+               .FirstOrDefault(r => r.Id == id);
+
+            if (facilities is null) return false;
+
+            _dbContext.Facilities.Remove(facilities);
+            _dbContext.SaveChanges();
+            return true;
+
         }
     }
 }
