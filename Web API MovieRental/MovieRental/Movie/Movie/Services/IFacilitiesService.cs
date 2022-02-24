@@ -9,7 +9,10 @@ namespace Movie.Services
     {
         int Create(CreateFacilitiesDTO dto);
         IEnumerable<FacilitiesDTO> GetAll();
+        IEnumerable<CustomersDTO> GetCustomers();
         FacilitiesDTO GetById(int id);
         bool Delete(int id);
+
+        bool Change(int id, ChangeCustomerDTO dto);
     }
 }

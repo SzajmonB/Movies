@@ -1,0 +1,10 @@
+2022-02-23 16:43:48.0364|INFO|Microsoft.Hosting.Lifetime|Now listening on: http://localhost:5000
+2022-02-23 16:43:48.1978|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2022-02-23 16:43:48.2636|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2022-02-23 16:43:48.3039|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Users\sbih\source\Web API MovieRental\MovieRental\Movie\Movie
+2022-02-23 16:44:16.9318|INFO|Movie.Services.FacilitiesService|Customers with id 32342 Change parameters
+2022-02-23 16:44:17.5979|INFO|Movie.Services.FacilitiesService|Customers with id 32342 Change parameters
+2022-02-23 17:22:38.7809|INFO|Microsoft.Hosting.Lifetime|Now listening on: http://localhost:5000
+2022-02-23 17:22:38.9193|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2022-02-23 17:22:38.9572|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2022-02-23 17:22:38.9989|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Users\sbih\source\Web API MovieRental\MovieRental\Movie\Movie

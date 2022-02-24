@@ -5,6 +5,7 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Movie.Models;
 using MovieRental;
+using Microsoft.Extensions.Logging;
 
 namespace Movie.Services
 {
@@ -20,12 +21,33 @@ namespace Movie.Services
     {
         private MovieRentalDbContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly ILogger<FacilitiesService> _logger;
 
-        public FacilitiesService(MovieRentalDbContext dbContext, IMapper mapper)
+        public FacilitiesService(MovieRentalDbContext dbContext, IMapper mapper, ILogger<FacilitiesService> logger)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _logger = logger;
         }
+        public bool Change(int id, ChangeCustomerDTO dto)
+        {
+          
+            _logger.LogError($"Customers with id {id} Change parameters WARNING");
+            var customers = _dbContext
+              .Customers
+              .FirstOrDefault(r => r.Id == id);
+
+            if (customers is null) return false;
+
+            customers.Name = dto.Name;
+            customers.SecondName = dto.SecondName;
+            customers.Description = dto.Description;
+            customers.RentedMovies = dto.RentedMovies;
+            _dbContext.SaveChanges();
+            return true;
+
+        }
+      
         public FacilitiesDTO GetById(int id)
         {
             var facilities = _dbContext
@@ -51,6 +73,16 @@ namespace Movie.Services
             var facilitiesDTO = _mapper.Map<List<FacilitiesDTO>>(facilities);
             return facilitiesDTO;
         }
+        public IEnumerable<CustomersDTO> GetCustomers()
+        {
+            var customers = _dbContext
+              .Customers
+               .ToList();
+
+
+            var customersDTO = _mapper.Map<List<CustomersDTO>>(customers);
+            return customersDTO;
+        }
 
         public int Create(CreateFacilitiesDTO dto)
         {
@@ -62,6 +94,8 @@ namespace Movie.Services
         }
         public bool Delete (int id)
         {
+            
+            
             var facilities = _dbContext
                .Facilities
               

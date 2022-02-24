@@ -1,15 +1,8 @@
-using System;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
 using Microsoft.AspNetCore.Mvc;
-using MovieRental.Table;
-using AutoMapper;
-using Microsoft.EntityFrameworkCore;
 using Movie.Models;
 using Movie.Services;
+using MovieRental.Table;
+using System.Collections.Generic;
 
 namespace MovieRental.Controllers
 {
@@ -28,8 +21,25 @@ namespace MovieRental.Controllers
         {
             _facilitiesService = facilitiesService;
         }
+        [HttpPut ("Change/{id}")]
+        public ActionResult Change([FromBody]ChangeCustomerDTO dto, [FromRoute]int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        [HttpGet("AllCustomers")]
+            _facilitiesService.Change(id, dto);
+            var isChange = _facilitiesService.Change(id, dto);
+            if(!isChange)
+            {
+                return NotFound();
+            }
+            return Ok();
+
+        }
+
+        [HttpGet("AllFacialities")]
         public ActionResult<IEnumerable<FacilitiesDTO>> GetAll()
         {
             var facilitiesDTO = _facilitiesService.GetAll();
@@ -71,7 +81,7 @@ namespace MovieRental.Controllers
         public ActionResult<Customers> GetCustomers()
         {
 
-            var customerDTO = _facilitiesService.GetAll();
+            var customerDTO = _facilitiesService.GetCustomers();
 
             return Ok(customerDTO);
         }
@@ -95,6 +105,7 @@ namespace MovieRental.Controllers
 
             return NotFound();
         }
+     
 
     }
 }

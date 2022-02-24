@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Ru41kZ1iN31hrKkSlNDi6SQ3mVzhiw+QB5BYUk3kI3j/wN46l1q2J0bD0zcmh2JzdY5TCXD3KTbVG4aGNS84Ag==",
+  "dgSpecHash": "q+OQsET5EAQe1TaAYrEhi4MkC3ImkhhzdQd8imZa4bK9xmdOTdNK8b1V2TPTmgfxwxGT8Wt9vJFtRa+NQoBsjg==",
   "success": true,
   "projectFilePath": "C:\\Users\\sbih\\source\\Web API MovieRental\\MovieRental\\Movie\\Movie\\Movie.csproj",
   "expectedPackageFiles": [
@@ -39,6 +39,9 @@
     "C:\\Users\\sbih\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\sbih\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\sbih\\.nuget\\packages\\newtonsoft.json\\10.0.1\\newtonsoft.json.10.0.1.nupkg.sha512",
+    "C:\\Users\\sbih\\.nuget\\packages\\nlog\\4.7.11\\nlog.4.7.11.nupkg.sha512",
+    "C:\\Users\\sbih\\.nuget\\packages\\nlog.extensions.logging\\1.7.4\\nlog.extensions.logging.1.7.4.nupkg.sha512",
+    "C:\\Users\\sbih\\.nuget\\packages\\nlog.web.aspnetcore\\4.14.0\\nlog.web.aspnetcore.4.14.0.nupkg.sha512",
     "C:\\Users\\sbih\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\sbih\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
     "C:\\Users\\sbih\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",

@@ -61,3 +61,7 @@ C:\Users\sbih\source\Web API MovieRental\MovieRental\Movie\Movie\bin\Debug\net5.
 C:\Users\sbih\source\Web API MovieRental\MovieRental\Movie\Movie\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\sbih\source\Web API MovieRental\MovieRental\Movie\Movie\bin\Debug\net5.0\AutoMapper.dll
 C:\Users\sbih\source\Web API MovieRental\MovieRental\Movie\Movie\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\sbih\source\Web API MovieRental\MovieRental\Movie\Movie\bin\Debug\net5.0\nlog.config
+C:\Users\sbih\source\Web API MovieRental\MovieRental\Movie\Movie\bin\Debug\net5.0\NLog.dll
+C:\Users\sbih\source\Web API MovieRental\MovieRental\Movie\Movie\bin\Debug\net5.0\NLog.Extensions.Logging.dll
+C:\Users\sbih\source\Web API MovieRental\MovieRental\Movie\Movie\bin\Debug\net5.0\NLog.Web.AspNetCore.dll
