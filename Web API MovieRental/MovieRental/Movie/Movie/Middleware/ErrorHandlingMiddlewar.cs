@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using NLog;
 using Microsoft.Extensions.Logging;
+using Movie.Exceptions;
 
 namespace Movie.Middleware
 {
@@ -22,6 +23,11 @@ namespace Movie.Middleware
             {
                 await next.Invoke(context);
 
+            }
+            catch (NotFoundException notFoundException )
+            {
+                context.Response.StatusCode = 404;
+                await context.Response.WriteAsync(notFoundException.Message);
             }
             catch (Exception e)
             {

@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Movie.Middleware;
 using Movie.Services;
 using MovieRental;
 using MovieRental.Table;
@@ -28,7 +29,7 @@ namespace Movie
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -38,6 +39,9 @@ namespace Movie
             services.AddScoped<MovieRentalSeeder>();
             services.AddAutoMapper(this.GetType().Assembly);
             services.AddScoped<IFacilitiesService, FacilitiesService>();
+            services.AddScoped<IMovieService, MovieServices>();
+            services.AddScoped<ErrorHandlingMiddleware>();
+            services.AddScoped<RunTimeMiddlewar>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,7 +54,8 @@ namespace Movie
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Movie v1"));
             }
-
+            app.UseMiddleware<ErrorHandlingMiddleware>();
+            app.UseMiddleware<RunTimeMiddlewar>();
             app.UseRouting();
 
             app.UseAuthorization();

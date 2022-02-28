@@ -6,16 +6,11 @@ using Microsoft.EntityFrameworkCore;
 using Movie.Models;
 using MovieRental;
 using Microsoft.Extensions.Logging;
+using Movie.Exceptions;
 
 namespace Movie.Services
 {
-    /* public interface IFacilitiesService
-     {
-         FacilitiesDTO GetById(int id);
-         IEnumerable<CustomersDTO> GetAll();
-         void Create(CreateFacilitiesDTO dto);
-
-     }*/
+   
     public class FacilitiesService : IFacilitiesService
 
     {
@@ -29,34 +24,54 @@ namespace Movie.Services
             _mapper = mapper;
             _logger = logger;
         }
-        public bool Change(int id, ChangeCustomerDTO dto)
+        public void Change(int id, ChangeCustomerDTO dto)
         {
-          
-            _logger.LogError($"Customers with id {id} Change parameters WARNING");
             var customers = _dbContext
-              .Customers
-              .FirstOrDefault(r => r.Id == id);
+             .Customers
+             .FirstOrDefault(r => r.Id == id);
 
-            if (customers is null) return false;
+            if (customers is null)
+                throw new NotFoundException("Customers not found");
 
             customers.Name = dto.Name;
             customers.SecondName = dto.SecondName;
             customers.Description = dto.Description;
             customers.RentedMovies = dto.RentedMovies;
+
             _dbContext.SaveChanges();
-            return true;
 
         }
-      
-        public FacilitiesDTO GetById(int id)
+        public void Delete(int id)
+        {
+
+
+            var facilities = _dbContext
+               .Facilities
+
+               .FirstOrDefault(r => r.Id == id);
+
+            if (facilities is null)
+                throw new NotFoundException("Customers not found");
+
+
+            _dbContext.Facilities.Remove(facilities);
+            _dbContext.SaveChanges();
+
+
+        }
+
+        public  FacilitiesDTO GetById(int id)
         {
             var facilities = _dbContext
                .Facilities
                .Include(r => r.Adress)
                .Include(t => t.Movies)
                .FirstOrDefault(r => r.Id == id);
+            _logger.LogError($"Customers with id {id} Change parameters WARNING");
 
-            if (facilities is null) return null;
+            if (facilities is null)
+                throw new NotFoundException("Facialities not found");
+            
 
             var result = _mapper.Map<FacilitiesDTO>(facilities);
             return result;
@@ -92,21 +107,6 @@ namespace Movie.Services
 
             return facilities.Id;
         }
-        public bool Delete (int id)
-        {
-            
-            
-            var facilities = _dbContext
-               .Facilities
-              
-               .FirstOrDefault(r => r.Id == id);
-
-            if (facilities is null) return false;
-
-            _dbContext.Facilities.Remove(facilities);
-            _dbContext.SaveChanges();
-            return true;
-
-        }
+   
     }
 }
