@@ -11,8 +11,8 @@ namespace Movie.Services
         IEnumerable<FacilitiesDTO> GetAll();
         IEnumerable<CustomersDTO> GetCustomers();
         FacilitiesDTO GetById(int id);
-        bool Delete(int id);
+        void Delete(int id);
 
-        bool Change(int id, ChangeCustomerDTO dto);
+        void Change(int id, ChangeCustomerDTO dto);
     }
 }

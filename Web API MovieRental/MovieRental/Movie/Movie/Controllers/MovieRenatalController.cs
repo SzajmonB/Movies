@@ -4,16 +4,13 @@ using Movie.Services;
 using MovieRental.Table;
 using System.Collections.Generic;
 
-namespace MovieRental.Controllers
+namespace MovieRental.Controllers 
 {
 
     [Route("API/MovieRental")] //mapowanie zapytania + sciezka 
     public class MovieRentalController : ControllerBase
 
     {
-
-
-
         private readonly IFacilitiesService _facilitiesService;
 
 
@@ -24,22 +21,16 @@ namespace MovieRental.Controllers
         [HttpPut ("Change/{id}")]
         public ActionResult Change([FromBody]ChangeCustomerDTO dto, [FromRoute]int id)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+          
 
             _facilitiesService.Change(id, dto);
-            var isChange = _facilitiesService.Change(id, dto);
-            if(!isChange)
-            {
-                return NotFound();
-            }
+         
+            
             return Ok();
 
         }
 
-        [HttpGet("AllFacialities")]
+        [HttpGet("All")]
         public ActionResult<IEnumerable<FacilitiesDTO>> GetAll()
         {
             var facilitiesDTO = _facilitiesService.GetAll();
@@ -60,6 +51,7 @@ namespace MovieRental.Controllers
 
             return Created($"/API/MovieRental/{id}", null);
         }
+
         [HttpGet("Facilities/{id}")]
         public ActionResult<FacilitiesDTO> GetId([FromRoute] int id)
         {
@@ -67,10 +59,7 @@ namespace MovieRental.Controllers
 
 
 
-            if (facilitiesDTO is null)
-            {
-                return NotFound();
-            }
+       
 
 
             return facilitiesDTO;
@@ -95,13 +84,9 @@ namespace MovieRental.Controllers
         [HttpDelete("Delete/{id}")]
         public ActionResult Delete([FromRoute] int id)
         {
-            var isDeleted = _facilitiesService.Delete(id);
+            _facilitiesService.Delete(id);
 
-            if (isDeleted)
-            {
-                return NoContent();
-
-            }
+           
 
             return NotFound();
         }

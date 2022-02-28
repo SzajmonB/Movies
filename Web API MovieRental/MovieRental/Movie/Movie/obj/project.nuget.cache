@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "q+OQsET5EAQe1TaAYrEhi4MkC3ImkhhzdQd8imZa4bK9xmdOTdNK8b1V2TPTmgfxwxGT8Wt9vJFtRa+NQoBsjg==",
+  "dgSpecHash": "yAew8BFCZcWITy9ib8cuSYau/9bS7Qpczte6cAg1RPEU1idgSYzgJX7nfsD/Gmlq8GbaIrjeqKvMYvIzSI6s5Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\sbih\\source\\Web API MovieRental\\MovieRental\\Movie\\Movie\\Movie.csproj",
   "expectedPackageFiles": [
@@ -44,7 +44,7 @@
     "C:\\Users\\sbih\\.nuget\\packages\\nlog.web.aspnetcore\\4.14.0\\nlog.web.aspnetcore.4.14.0.nupkg.sha512",
     "C:\\Users\\sbih\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\sbih\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
-    "C:\\Users\\sbih\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "C:\\Users\\sbih\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
     "C:\\Users\\sbih\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
     "C:\\Users\\sbih\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512",
     "C:\\Users\\sbih\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",

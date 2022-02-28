@@ -16,7 +16,9 @@ namespace MovieRental
             .ForMember(m => m.PostaCode, c => c.MapFrom(s => s.Adress.PostaCode));
 
 
-            CreateMap<Movies, MoviesDTO>(); // ?
+            CreateMap<Movies, MoviesDTO>(); 
+
+
             CreateMap<Customers, CustomersDTO>();
                 
 
@@ -24,7 +26,11 @@ namespace MovieRental
                 .ForMember(r => r.Adress,
                 c => c.MapFrom(dto => new Adress()
                 { City = dto.City, PostaCode = dto.PostaCode, Street = dto.Street }));
+
+            CreateMap<CreatMovieDTO, Movies>();
         }
+
+
     }
 }
 
